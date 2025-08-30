@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ransomware</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      overflow: hidden;
+      font-weight: bold; /* semua font tebel */
+    }
+    .container {
+      margin-top: 30px;
+      padding: 20px;
+    }
+    .pp {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 20px auto;
+      display: block;
+      border: 3px solid red;
+      box-shadow: 0 0 20px red;
+    }
+    h1 {
+      font-size: 1.6em;
+      margin-bottom: 15px;
+      color: red;
+    }
+    .countdown {
+      font-size: 2em;
+      color: lime;
+      margin: 15px 0;
+      text-shadow: 0 0 10px red;
+    }
+    .btn {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+      padding: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: purple;
+      color: white;
+    }
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    /* Halaman akhir */
+    .page {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+    .active {
+      display: flex;
+    }
+    .final-text {
+      font-size: 1.5em;
+      color: red;
+      text-shadow: 0 0 10px red;
+      padding: 20px;
+    }
+
+    /* Spam text di halaman skip */
+    .spam {
+      position: absolute;
+      font-size: 2em;
+      font-weight: bold;
+      animation: jatuh 3s linear infinite;
+    }
+    @keyframes jatuh {
+      from { top: -50px; }
+      to { top: 100vh; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Halaman Utama -->
+  <div id="page1" class="page active">
+    <div class="container">
+      <img src="https://files.catbox.moe/29vbjm.jpg" alt="Foto PP" class="pp"> <!-- Ganti dengan foto kamu -->
+      <h1>
+        HAHHAHAHHAHHAHAHH<br>
+        KAMU UDAH TERJEBAK DENGAN SAYA KALO DATA ELU GAK MAU DI AMBIL CHAT OWNER KAMI KASIH WAKTU 10 DETIK BUAT CHET OWNER BIAR DATA ELU KAGA GUA AMBIL<br><br>
+        📵↓waktu sisa segini↓📵
+      </h1>
+      <div class="countdown" id="timer">10</div>
+      <button class="btn" onclick="chatTelegram()">CHAT SEKARANG</button>
+      <button class="btn" onclick="gotoSkip()">SKIP GAK TAKUT</button>
+    </div>
+  </div>
+
+  <!-- Halaman Timeout -->
+  <div id="page2" class="page">
+    <div class="final-text">
+      HAHAHA PEA KELAMAAN LU DATA ELU UDAH GUA AMBIL GUA SEBARIN KE SEMUA NEGARA 📵🤣🤣🤣
+    </div>
+  </div>
+
+  <!-- Halaman Skip -->
+  <div id="page3" class="page"></div>
+
+  <!-- Audio -->
+  <audio autoplay loop>
+    <source src="https://files.catbox.moe/roedvg.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Countdown
+    let time = 10;
+    const timer = document.getElementById("timer");
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+    const page3 = document.getElementById("page3");
+
+    const countdown = setInterval(() => {
+      time--;
+      timer.textContent = time;
+      if (time <= 0) {
+        clearInterval(countdown);
+        page1.classList.remove("active");
+        page2.classList.add("active");
+      }
+    }, 700); // lebih cepat dari 1 detik
+     
+    // Tombol Chat
+    function chatTelegram() {
+      window.location.href = "https://t.me/anezzz1";
+    }
+
+    // Tombol Skip
+    function gotoSkip() {
+      page1.classList.remove("active");
+      page3.classList.add("active");
+
+      // Spam teks warna-warni
+      setInterval(() => {
+        let span = document.createElement("span");
+        span.className = "spam";
+        span.innerText = "🔒 HAHHAHAH IDIOT TOLOL UDAH TAU NGANCEM MASIH KAGA PERCAYA PEA INI ORANG 🔒";
+        span.style.left = Math.random() * window.innerWidth + "px";
+        span.style.color = getRandomColor();
+        page3.appendChild(span);
+
+        // hapus biar ga numpuk terus
+        setTimeout(() => span.remove(), 5000);
+      }, 100);
+    }
+
+    // Fungsi warna random
+    function getRandomColor() {
+      const colors = ["red", "lime", "cyan", "yellow", "magenta", "white", "orange"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
